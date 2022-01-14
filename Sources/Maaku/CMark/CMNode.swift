@@ -258,7 +258,7 @@ public extension CMNode {
         }
         let extName = String(cString: ext.pointee.name)
         let result = CMExtensionOption.option(forExtensionName: extName)
-        if result == .none {
+        if result == CMExtensionOption.none {
             return nil
         } else {
             return result
