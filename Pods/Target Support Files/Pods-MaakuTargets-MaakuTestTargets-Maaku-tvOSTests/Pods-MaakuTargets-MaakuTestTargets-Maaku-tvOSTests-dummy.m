@@ -1,5 +1,0 @@
-#import <Foundation/Foundation.h>
-@interface PodsDummy_Pods_MaakuTargets_MaakuTestTargets_Maaku_tvOSTests : NSObject
-@end
-@implementation PodsDummy_Pods_MaakuTargets_MaakuTestTargets_Maaku_tvOSTests
-@end
