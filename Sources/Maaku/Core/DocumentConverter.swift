@@ -280,7 +280,7 @@ extension DocumentConverter: CMParserDelegate {
     }
 
     public func parser(parser: CMParser, didStartOrderedListWithStartingNumber num: Int32, tight: Bool) {
-        nodes.append(OrderedList())
+        nodes.append(OrderedList(listStartingNumber: num, listTight: tight))
     }
 
     public func parser(parser: CMParser, didEndOrderedListWithStartingNumber num: Int32, tight: Bool) {
@@ -292,8 +292,11 @@ extension DocumentConverter: CMParserDelegate {
         }
 
         if nodes.last is OrderedList {
+            let last = nodes.last as! OrderedList
+            let tight = last.listTight
+            let num = last.listStartingNumber
             nodes.removeLast()
-            nodes.append(OrderedList(items: blockItems))
+            nodes.append(OrderedList(items: blockItems, listStartingNumber: num, listTight: tight))
         }
     }
 

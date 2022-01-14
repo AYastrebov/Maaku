@@ -13,13 +13,20 @@ public struct OrderedList: List {
 
     /// The list items.
     public let items: [Block]
+    
+    ///
+    public let listStartingNumber: Int32
+    
+    public let listTight: Bool
 
     /// Creates an OrderedList.
     ///
     /// - Returns:
     ///     The initialized OrderedList.
-    public init() {
+    public init(listStartingNumber: Int32 = 1, listTight: Bool = false) {
         items = []
+        self.listStartingNumber = listStartingNumber
+        self.listTight = listTight
     }
 
     /// Creates an OrderedList with the specified items.
@@ -28,8 +35,10 @@ public struct OrderedList: List {
     ///     - items: The block items.
     /// - Returns:
     ///     The initialized OrderedList.
-    public init(items: [Block]) {
+    public init(items: [Block], listStartingNumber: Int32 = 1, listTight: Bool = false) {
         self.items = items
+        self.listStartingNumber = listStartingNumber
+        self.listTight = listTight
     }
 
 }
