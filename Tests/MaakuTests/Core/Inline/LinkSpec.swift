@@ -76,6 +76,22 @@ class LinkSpec: QuickSpec {
                 }
             }
         }
+        
+        describe("Link with strong") {
+            let text = "****[github](https://www.github.com/)****\n"
+
+            do {
+                let document = try Document(text: text)
+
+                it("parses the link in double strong") {
+                    expect(document.attributedText(style: DefaultStyle()).string).to(equal("github"))
+                }
+            } catch let error {
+                it("fails to initialize the document") {
+                    fail("\(error.localizedDescription)")
+                }
+            }
+        }
     }
 
 }

@@ -153,7 +153,7 @@ extension DocumentConverter: CMParserDelegate {
             nodes.removeLast()
         }
 
-        if nodes.last is Emphasis {
+        if let emp = nodes.last as? Emphasis, emp.items.isEmpty {
             nodes.removeLast()
             nodes.append(Emphasis(items: inlineItems))
         }
@@ -165,13 +165,13 @@ extension DocumentConverter: CMParserDelegate {
 
     public func parserDidEndStrong(parser: CMParser) {
         var inlineItems: [Inline] = []
-
+        
         while let item = nodes.last as? Inline, !(item is Strong) {
             inlineItems.insert(item, at: 0)
             nodes.removeLast()
         }
 
-        if nodes.last is Strong {
+        if let strong = nodes.last as? Strong, strong.items.isEmpty {
             nodes.removeLast()
             nodes.append(Strong(items: inlineItems))
         }
@@ -291,8 +291,7 @@ extension DocumentConverter: CMParserDelegate {
             nodes.removeLast()
         }
 
-        if nodes.last is OrderedList {
-            let last = nodes.last as! OrderedList
+        if let last = nodes.last as? OrderedList {
             let tight = last.listTight
             let num = last.listStartingNumber
             nodes.removeLast()
